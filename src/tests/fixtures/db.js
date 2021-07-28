@@ -29,6 +29,18 @@ const reportTwo = {
   },
 };
 
+const incorrectReport = {
+  reportDetails: {
+    userID: "user-2",
+    marketName: "Vashi Navi Mumbai",
+    cmdtyID: "cmdty-1",
+    cmdtyName: "Potato",
+    priceUnit: "Quintal",
+    convFctr: 100,
+    price: 1600,
+  },
+};
+
 const setupDatabase = async () => {
   await Commodity.deleteMany({});
   await Report.deleteMany({});
@@ -36,5 +48,6 @@ const setupDatabase = async () => {
 module.exports = {
   reportOne,
   reportTwo,
+  incorrectReport,
   setupDatabase,
 };

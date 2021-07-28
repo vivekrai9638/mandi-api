@@ -43,7 +43,11 @@ const commoditySchema = new mongoose.Schema({
 
 commoditySchema.pre("save", async function (next) {
   const commodity = this;
+
+  // Returning an array of all reports which matches with cmdtyID
   const commodities = await Report.find({ cmdtyID: commodity.cmdtyID });
+
+  // Calculating mean Price
   const newPrice = math.format(
     commodities.reduce((acc, com) => {
       return (acc += com.perKg);
@@ -51,6 +55,7 @@ commoditySchema.pre("save", async function (next) {
     14
   );
 
+  // Updating the new mean Price
   commodity.price = newPrice;
   next();
 });
